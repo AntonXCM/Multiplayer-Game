@@ -73,6 +73,7 @@ func send_player_to_scene(sceneName: String, id: int):
 			
 			if scene == sceneName:
 				SendPlayerInformation.rpc_id(id,i["name"], i["id"])
+				SendPlayerInformation.rpc_id(i["id"],Players[id]["name"], id)
 		var playerScene = (scenes[sceneName] as Node)
 		send_scene_bytes.rpc_id(id, NetworkSerializer.serialize(playerScene))
 		for player in Players.values():
