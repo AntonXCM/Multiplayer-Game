@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3vb00i3dywve"]
+[gd_scene load_steps=9 format=3 uid="uid://b3vb00i3dywve"]
 
 [ext_resource type="Texture2D" uid="uid://87b1h4acu7ow" path="res://inventory.png" id="1_5tt2m"]
 [ext_resource type="Script" uid="uid://dao3oi0nfvn3h" path="res://inventory.gd" id="2_mrqgh"]
 [ext_resource type="Texture2D" uid="uid://dq18t0pk36jfy" path="res://pocket.png" id="3_dw5ng"]
 [ext_resource type="Texture2D" uid="uid://btiycai76ibp6" path="res://box.png" id="4_mrqgh"]
+[ext_resource type="Texture2D" uid="uid://cmciyudpjl4sq" path="res://rock.png" id="4_qjyhv"]
 [ext_resource type="Texture2D" uid="uid://belxc5100ey7d" path="res://flower.png" id="5_dw5ng"]
 [ext_resource type="Texture2D" uid="uid://bnix3r6smrlou" path="res://bomb.png" id="6_0xmy5"]
 
@@ -35,9 +36,32 @@ position = Vector2(1, 1)
 texture = ExtResource("3_dw5ng")
 centered = false
 
-[node name="ButtonBox" type="Area2D" parent="."]
+[node name="ButtonRock" type="Area2D" parent="."]
 process_mode = 3
 position = Vector2(12, 0)
+disable_mode = 2
+script = ExtResource("2_mrqgh")
+objectToSpawn = "res://rock.tscn"
+isGrid = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonRock"]
+process_mode = 3
+position = Vector2(5.5, 5.5)
+shape = SubResource("RectangleShape2D_5tt2m")
+
+[node name="InventoryCell" type="Sprite2D" parent="ButtonRock"]
+show_behind_parent = true
+texture = ExtResource("1_5tt2m")
+centered = false
+
+[node name="Icon" type="Sprite2D" parent="ButtonRock/InventoryCell"]
+position = Vector2(1, 1)
+texture = ExtResource("4_qjyhv")
+centered = false
+
+[node name="ButtonBox" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(24, 0)
 disable_mode = 2
 script = ExtResource("2_mrqgh")
 objectToSpawn = "res://box.tscn"
@@ -60,7 +84,7 @@ centered = false
 
 [node name="ButtonFlower" type="Area2D" parent="."]
 process_mode = 3
-position = Vector2(24, 0)
+position = Vector2(36, 0)
 disable_mode = 2
 script = ExtResource("2_mrqgh")
 objectToSpawn = "res://flower.tscn"
@@ -82,7 +106,7 @@ centered = false
 
 [node name="ButtonBomb" type="Area2D" parent="."]
 process_mode = 3
-position = Vector2(36, 0)
+position = Vector2(48, 0)
 disable_mode = 2
 script = ExtResource("2_mrqgh")
 objectToSpawn = "res://bomb.tscn"
