@@ -6,9 +6,10 @@ const MOVEMENT_KEYS := {KEY_W: Vector2i.UP, KEY_A: Vector2i.LEFT, KEY_S: Vector2
 var is_owned = false
 
 func _enter_tree() -> void:
-	if id == 0:
-		self.texture=load("res://tgianter.png")
 	Connector.Players[id]["object"] = self
+	if Connector.PlayerSkins.has(id):
+		get_tree().root.get_child(0).rpc_set_skin(Connector.PlayerSkins[id],id)
+		
 	if id == Connector.playerId:
 		is_owned = true
 

@@ -36,6 +36,8 @@ func _process(delta: float) -> void:
 func launch():
 	grid.remove_object(grid_pos)
 	for plr in passagers:
+		if not plr:
+			continue
 		if plr.is_owned:
 			get_tree().root.get_child(0).request_scene("Space")
 			print("Улетел")

@@ -7,6 +7,7 @@ class_name Connector
 static var peer
 static var playerId : int = 0
 static var Players = {}
+static var PlayerSkins = {}
 static var Scene
 static var SceneNode
 static var Name
@@ -67,6 +68,8 @@ func request_scene(sceneName:String):
 @rpc("any_peer","call_remote")
 func send_player_to_scene(sceneName: String, id: int):
 	if multiplayer.is_server():
+		if Players[id].has("object"):
+			Players[id]["object"].queue_free()
 		Players[id]["scene"] = sceneName
 		for i in Players.values():
 			var scene = i["scene"]
@@ -113,6 +116,8 @@ func set_skin(image):
 
 @rpc("any_peer","call_local")
 func rpc_set_skin(image : PackedByteArray, id : int):
-	var size = bytes_to_var_with_objects(image).get_size()
+	var skin = bytes_to_var_with_objects(image)
+	var size = skin.get_size()
+	PlayerSkins[id] = image
 	Players[id]["object"].scale = Vector2(9,9)/size
-	Players[id]["object"].texture = bytes_to_var_with_objects(image)
+	Players[id]["object"].texture = skin
