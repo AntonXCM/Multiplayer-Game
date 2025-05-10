@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cse67pd64acfh"]
+
+[ext_resource type="Texture2D" uid="uid://btiycai76ibp6" path="res://box.png" id="1_oq5cr"]
+[ext_resource type="Script" uid="uid://db7sgpdit2aql" path="res://Scripts/box.gd" id="2_bqn3j"]
+
+[node name="Box" type="Sprite2D"]
+texture = ExtResource("1_oq5cr")
+centered = false
+script = ExtResource("2_bqn3j")

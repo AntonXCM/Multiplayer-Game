@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c6c4ccd2s6lg5" path="res://Scripts/rocket.gd" id="1_24okg"]
 [ext_resource type="Texture2D" uid="uid://dv0nmj6yby314" path="res://rocketBig.png" id="1_drj8k"]
 
-[node name="Sprite" type="Sprite2D"]
+[node name="Rocket" type="Sprite2D"]
 y_sort_enabled = true
 texture = ExtResource("1_drj8k")
 centered = false
@@ -12,7 +12,7 @@ region_enabled = true
 region_rect = Rect2(18, 0, 18, 36)
 script = ExtResource("1_24okg")
 
-[node name="Sprite2" type="Sprite2D" parent="."]
+[node name="2ndLayer" type="Sprite2D" parent="."]
 z_index = -50
 y_sort_enabled = true
 texture = ExtResource("1_drj8k")

@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 				child.queue_free()
 	
 		position.y-=(1-launchTimer/len(passagers))*delta*108
+func _exit_tree() -> void:
+	launch()
 func launch():
 	grid.remove_object(grid_pos)
 	for plr in passagers:
