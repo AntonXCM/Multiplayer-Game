@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Play",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "C:\\Program Files\\Godot Engine\\Godot_v4.4.1-stable_mono_win64.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": true
+        },
+        {
+            "name": "HostGame",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "C:\\Program Files\\Godot Engine\\Godot_v4.4.1-stable_mono_win64.exe",
+            "args": ["--server"],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug",
+            "configurations": ["HostGame", "Play"]
+        }
+    ]
+}

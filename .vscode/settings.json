@@ -1,0 +1,19 @@
+{
+    "FSharp.suggestGitignore": false,
+    "godotTools.editorPath.godot4": "c:\\Program Files\\Godot Engine\\Godot_v4.4.1-stable_mono_win64.exe",
+    "editor.fontFamily": "Fira Code, 'Courier New', monospace",
+    "editor.suggest.showVariables": false,
+    "breadcrumbs.showVariables": false,
+    "outline.showVariables": false,
+    "editor.inlayHints.enabled": "off",
+    "editor.copyWithSyntaxHighlighting": true,
+    "editor.foldingHighlight": true,
+    "editor.renderLineHighlight": "none",
+    "editor.semanticHighlighting.enabled": false,
+    "editor.inlineSuggest.syntaxHighlightingEnabled": false,
+    "csharp.semanticHighlighting.enabled": true,
+    "workbench.editor.showTabs": "multiple",
+    "accessibility.underlineLinks": false,
+    "csharp.debug.logging.diagnosticsLog.debugRuntimeEventTracing": false,
+    "editor.guides.bracketPairsHorizontal": false
+}

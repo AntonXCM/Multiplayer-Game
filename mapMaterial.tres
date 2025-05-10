@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c3pkagvgrrir1"]
+
+[sub_resource type="Shader" id="Shader_05x41"]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask;
+
+void fragment() {
+	int x = int(UV.x * 4.0 / 49.0 * 441.0);
+	int y = int(UV.y * 4.0 / 46.0 * 414.0);
+    vec4 mask_pixel = texture(mask, vec2(float(x)/441.0,float(y)/414.0));
+    vec4 base = texture(TEXTURE, UV);
+    
+    COLOR = vec4(base.r*mask_pixel.r,base.g*mask_pixel.g,base.b*mask_pixel.b,mask_pixel.r);
+}
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gqbix"]
+resource_local_to_scene = false
+viewport_path = NodePath("Sprite2D/MaskViewport")
+
+[resource]
+shader = SubResource("Shader_05x41")
+shader_parameter/mask = SubResource("ViewportTexture_gqbix")

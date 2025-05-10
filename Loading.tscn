@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwah0ckpwyiwa"]
+
+[ext_resource type="Script" uid="uid://ceaucx6p55ey2" path="res://Scripts/connector.gd" id="1_3d0vp"]
+[ext_resource type="PackedScene" uid="uid://c2emles06jk73" path="res://player.tscn" id="2_1dm06"]
+[ext_resource type="PackedScene" uid="uid://b3vb00i3dywve" path="res://inventory.tscn" id="3_ei5iv"]
+[ext_resource type="Script" uid="uid://covyxtaypl270" path="res://skin_picker.gd" id="4_qx4wl"]
+[ext_resource type="Script" uid="uid://c6vk4ah07r4rg" path="res://chat.gd" id="5_0u603"]
+[ext_resource type="Script" uid="uid://b8urqvjuh3rii" path="res://namequeston.gd" id="6_3ipkp"]
+[ext_resource type="Script" uid="uid://b4a7dly2ljpxa" path="res://input_escape.gd" id="6_hcrdm"]
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 1
+script = ExtResource("1_3d0vp")
+playerPrefab = ExtResource("2_1dm06")
+
+[node name="Ui" type="Node2D" parent="."]
+
+[node name="Inventory" parent="Ui" instance=ExtResource("3_ei5iv")]
+position = Vector2(2, 203)
+
+[node name="Button" type="Button" parent="Ui" node_paths=PackedStringArray("connector")]
+z_index = 1000
+texture_filter = 1
+offset_left = 62.0
+offset_top = 203.0
+offset_right = 85.0
+offset_bottom = 214.0
+text = "скин
+"
+autowrap_mode = 2
+script = ExtResource("4_qx4wl")
+connector = NodePath("../..")
+
+[node name="FileDialog" type="FileDialog" parent="Ui/Button"]
+use_native_dialog = true
+
+[node name="WrongDialog" type="AcceptDialog" parent="Ui/Button"]
+canvas_item_default_texture_filter = 0
+title = "ТВОЙ СКИН НЕ ПОДХОДИТ"
+initial_position = 1
+size = Vector2i(740, 215)
+popup_window = true
+extend_to_title = true
+content_scale_factor = 8.0
+ok_button_text = "Понял"
+dialog_text = "Спрайт должен быть 9х9"
+
+[node name="Node2D" type="Control" parent="Ui"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_0u603")
+
+[node name="InputField" type="TextEdit" parent="Ui/Node2D"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 179.0
+offset_right = 87.0
+offset_bottom = 202.0
+placeholder_text = "Напиши сообщение"
+script = ExtResource("6_hcrdm")
+
+[node name="ChatLog" type="RichTextLabel" parent="Ui/Node2D"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 139.0
+offset_right = 87.0
+offset_bottom = 179.0
+text = "Добро пожаловать в чат
+"
+vertical_alignment = 2
+
+[node name="Window" type="Window" parent="."]
+canvas_item_default_texture_filter = 0
+title = "Вопрос имени"
+initial_position = 1
+size = Vector2i(800, 300)
+exclusive = true
+borderless = true
+always_on_top = true
+popup_window = true
+content_scale_factor = 6.0
+script = ExtResource("6_3ipkp")
+
+[node name="NameInput" type="TextEdit" parent="Window"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 133.0
+offset_bottom = 47.0
+placeholder_text = "Как тебя зовут?"
+
+[connection signal="pressed" from="Ui/Button" to="Ui/Button" method="_on_pressed"]
