@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwah0ckpwyiwa"]
+[gd_scene load_steps=9 format=3 uid="uid://cwah0ckpwyiwa"]
 
 [ext_resource type="Script" uid="uid://ceaucx6p55ey2" path="res://Scripts/connector.gd" id="1_3d0vp"]
 [ext_resource type="PackedScene" uid="uid://c2emles06jk73" path="res://player.tscn" id="2_1dm06"]
 [ext_resource type="PackedScene" uid="uid://b3vb00i3dywve" path="res://inventory.tscn" id="3_ei5iv"]
 [ext_resource type="Script" uid="uid://covyxtaypl270" path="res://skin_picker.gd" id="4_qx4wl"]
 [ext_resource type="Script" uid="uid://c6vk4ah07r4rg" path="res://chat.gd" id="5_0u603"]
+[ext_resource type="Script" uid="uid://duoi03m124187" path="res://Scripts/music_picker.gd" id="5_mrh31"]
 [ext_resource type="Script" uid="uid://b8urqvjuh3rii" path="res://namequeston.gd" id="6_3ipkp"]
 [ext_resource type="Script" uid="uid://b4a7dly2ljpxa" path="res://input_escape.gd" id="6_hcrdm"]
 
@@ -27,7 +28,7 @@ playerPrefab = ExtResource("2_1dm06")
 [node name="Inventory" parent="Ui" instance=ExtResource("3_ei5iv")]
 position = Vector2(2, 203)
 
-[node name="Button" type="Button" parent="Ui" node_paths=PackedStringArray("connector")]
+[node name="Skin change" type="Button" parent="Ui"]
 z_index = 1000
 texture_filter = 1
 offset_left = 62.0
@@ -38,12 +39,11 @@ text = "скин
 "
 autowrap_mode = 2
 script = ExtResource("4_qx4wl")
-connector = NodePath("../..")
 
-[node name="FileDialog" type="FileDialog" parent="Ui/Button"]
+[node name="FileDialog" type="FileDialog" parent="Ui/Skin change"]
 use_native_dialog = true
 
-[node name="WrongDialog" type="AcceptDialog" parent="Ui/Button"]
+[node name="WrongDialog" type="AcceptDialog" parent="Ui/Skin change"]
 canvas_item_default_texture_filter = 0
 title = "ТВОЙ СКИН НЕ ПОДХОДИТ"
 initial_position = 1
@@ -53,6 +53,29 @@ extend_to_title = true
 content_scale_factor = 8.0
 ok_button_text = "Понял"
 dialog_text = "Спрайт должен быть 9х9"
+
+[node name="Music request" type="Button" parent="Ui" node_paths=PackedStringArray("player")]
+z_index = 1000
+texture_filter = 1
+offset_left = 86.0
+offset_top = 203.0
+offset_right = 109.0
+offset_bottom = 214.0
+text = "трек"
+autowrap_mode = 2
+script = ExtResource("5_mrh31")
+player = NodePath("AudioStreamPlayer2D")
+
+[node name="FileDialog" type="FileDialog" parent="Ui/Music request"]
+auto_translate_mode = 1
+use_native_dialog = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Ui/Music request"]
+current = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Ui/Music request"]
+autoplay = true
+attenuation = 1.4739e-05
 
 [node name="Node2D" type="Control" parent="Ui"]
 layout_mode = 3
@@ -97,4 +120,5 @@ offset_right = 133.0
 offset_bottom = 47.0
 placeholder_text = "Как тебя зовут?"
 
-[connection signal="pressed" from="Ui/Button" to="Ui/Button" method="_on_pressed"]
+[connection signal="pressed" from="Ui/Skin change" to="Ui/Skin change" method="_on_pressed"]
+[connection signal="pressed" from="Ui/Music request" to="Ui/Music request" method="_on_pressed"]
