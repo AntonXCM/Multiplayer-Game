@@ -33,7 +33,7 @@ project/assembly_name="Factory"
 
 [editor]
 
-run/main_run_args="--serve"
+run/main_run_args="--server"
 
 [gui]
 

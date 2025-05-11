@@ -12,7 +12,7 @@ func _on_pressed() -> void:
 func _on_file_selected(path):
 	var image = Image.new()
 	if image.load(path) != OK:
-		$ErrorDialog.popup()
+		$WrongDialog.popup()
 		return
 	var texture = ImageTexture.create_from_image(image)
 	connector.set_skin(texture)

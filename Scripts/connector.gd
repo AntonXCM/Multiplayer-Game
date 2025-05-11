@@ -5,13 +5,13 @@ class_name Connector
 @export var port = 5352
 @export var playerPrefab : PackedScene
 static var peer
+static var upnp
 static var playerId : int = 0
 static var Players = {}
 static var PlayerSkins = {}
 static var Scene
 static var SceneNode
 static var Name
-
 var scenes = {}
 
 func _ready():
@@ -24,7 +24,9 @@ func _ready():
 	hostGame()
 	create_scene("Planet","res://Planet.tscn")
 	create_scene("Space","res://map.tscn")
-	
+	upnp = UPNP.new()
+	upnp.discover()
+	upnp.add_port_mapping(port, port, "Multiplayer Game","TCP")
 	get_window().title="Host"
 
 func create_scene(sceneName:String, resource:String):

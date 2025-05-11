@@ -28,7 +28,7 @@ playerPrefab = ExtResource("2_1dm06")
 [node name="Inventory" parent="Ui" instance=ExtResource("3_ei5iv")]
 position = Vector2(2, 203)
 
-[node name="Skin change" type="Button" parent="Ui" node_paths=PackedStringArray("connector")]
+[node name="Skin change" type="Button" parent="Ui"]
 z_index = 1000
 texture_filter = 1
 offset_left = 62.0
@@ -39,7 +39,6 @@ text = "скин
 "
 autowrap_mode = 2
 script = ExtResource("4_qx4wl")
-connector = NodePath("../..")
 
 [node name="FileDialog" type="FileDialog" parent="Ui/Skin change"]
 use_native_dialog = true
@@ -53,7 +52,7 @@ popup_window = true
 extend_to_title = true
 content_scale_factor = 8.0
 ok_button_text = "Понял"
-dialog_text = "Ошибка"
+dialog_text = "Спрайт должен быть 9х9"
 
 [node name="Music request" type="Button" parent="Ui" node_paths=PackedStringArray("player")]
 z_index = 1000
